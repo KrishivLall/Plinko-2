@@ -100,7 +100,7 @@ function draw() {
    if(particles !== null){
     particles.display();
     if(particles.body.position.y > 480){
-      if(particles.body.position.x < 301 || > 600 ){
+      if(particles.body.position.x     > 600 ){
         score = score + 100;
         particles = null;
       }
