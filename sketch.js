@@ -13,6 +13,7 @@ var score = 0;
 var turn = 0;
 var gameState = "play";
 
+
 function setup() {
   createCanvas(800, 800);
   engine = Engine.create();
@@ -48,14 +49,9 @@ function setup() {
     
        plinkos.push(new Plinko(j,375));
     }
-
-    
-
     
 }
  
-
-
 function draw() {
   background("black");
   textSize(20)
@@ -87,12 +83,22 @@ function draw() {
    text("200", 660, 525);
    text("200", 740, 525);
 
+   if(turn >= 5){
+     gameState = "end";
+   }
+
+   if(gameState === "end"){
+     textSize(25);
+     text("GAME OVER", 400, 400)
+   }
+
    if(particles !== null){
      particles.display();
      if(particles.body.position.y > 480){
        if(particles.body.position.x < 300){
          score = score + 500;
          particles = null;
+         
        }
      }
    }
@@ -100,13 +106,24 @@ function draw() {
    if(particles !== null){
     particles.display();
     if(particles.body.position.y > 480){
-      if(particles.body.position.x     > 600 ){
+      if(particles.body.position.x > 300 && particles.body.position.x < 600 ){
         score = score + 100;
         particles = null;
+        
       }
     }
   }
    
+  
+  if(particles !== null){
+    particles.display();
+    if(particles.body.position.y > 480){
+      if(particles.body.position.x > 600 && particles.body.position.x < 900 ){
+        score = score + 200;
+        particles = null;
+      }
+    }
+  }
 
 
 
